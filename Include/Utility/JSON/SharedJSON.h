@@ -12,6 +12,8 @@ namespace Zero
     {
     public:
         virtual ~SharedJSON() = 0;
+
+        virtual bool parse(const char* jsonstring) = 0;
     };
 }
 

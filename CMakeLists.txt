@@ -35,14 +35,28 @@ set(ROOT_SOURCE_FILES
 	"Source/Zero.cpp"
 )
 
+set(UTILITY_FILE_SOURCE_FILES
+	"Source/Utility/File/File.cpp"
+)
+
+set(UTILITY_JSON_SOURCE_FILES
+	"Source/Utility/JSON/JSON.cpp"
+)
+
 set(SOURCE_FILES
 	${ROOT_SOURCE_FILES}
+	${UTILITY_FILE_SOURCE_FILES}
+	${UTILITY_JSON_SOURCE_FILES}
 )
 
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
 
-source_group("Header Files" FILES ${ROOT_HEADER_FILES})
-source_group("Source Files" FILES ${ROOT_SOURCE_FILES})
-source_group("Header Files\\Utility" FILES ${UTILITY_HEADER_FILES})
-source_group("Header Files\\Utility\\File" FILES ${UTILITY_FILE_HEADER_FILES})
-source_group("Header Files\\Utility\\JSON" FILES ${UTILITY_JSON_HEADER_FILES})
+source_group("Include" FILES ${ROOT_HEADER_FILES})
+source_group("Include\\Utility" FILES ${UTILITY_HEADER_FILES})
+source_group("Include\\Utility\\File" FILES ${UTILITY_FILE_HEADER_FILES})
+source_group("Include\\Utility\\JSON" FILES ${UTILITY_JSON_HEADER_FILES})
+
+source_group("Source" FILES ${ROOT_SOURCE_FILES})
+source_group("Source\\Utility")
+source_group("Source\\Utility\\File" FILES ${UTILITY_FILE_SOURCE_FILES})
+source_group("Source\\Utility\\JSON" FILES ${UTILITY_JSON_SOURCE_FILES})
