@@ -10,4 +10,14 @@
 
 // *****************************************************************************
 
+namespace Zero
+{
+    class Ruby
+    {
+    public:
+        int StartVM(int argc, char**argv);
+    };
+}
+
+
 #endif  // __ZERO_LIB_H__

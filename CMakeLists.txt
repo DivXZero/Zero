@@ -4,7 +4,9 @@ set(PROJECT_NAME "Zero")
 project(${PROJECT_NAME})
 
 include_directories("Include")
+include_directories("Dependencies/glm")
 include_directories("Dependencies/rapidjson/include")
+include_directories("Dependencies/ruby/usr/include/ruby-2.3.0")
 
 set(ROOT_HEADER_FILES
 	"Include/Zero.h"
@@ -60,3 +62,16 @@ source_group("Source" FILES ${ROOT_SOURCE_FILES})
 source_group("Source\\Utility")
 source_group("Source\\Utility\\File" FILES ${UTILITY_FILE_SOURCE_FILES})
 source_group("Source\\Utility\\JSON" FILES ${UTILITY_JSON_SOURCE_FILES})
+
+find_package(OpenGL REQUIRED)
+if(OPENGL_FOUND)
+	message(STATUS "OpenGL Found")
+	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
+endif()
+
+find_package(RUBY REQUIRED)
+if(RUBY_FOUND)
+	message(STATUS "Ruby ${RUBY_VERSION} Found")
+	#include_directories(${RUBY_INCLUDE_DIRS})
+	target_link_libraries(${PROJECT_NAME} ${RUBY_LIBRARY})
+endif()
