@@ -8,6 +8,10 @@
 
 #include "SharedFile.h"
 
+#include <fstream>
+#include <string>
+#include <iostream>
+
 // *****************************************************************************
 
 namespace Zero
@@ -17,6 +21,14 @@ namespace Zero
     public:
         File() {}
         ~File() {}
+
+        bool open(const char* file);
+        std::string getDataString();
+
+    private:
+        std::string     m_strContent;
+        const char*     m_fname;
+        std::fstream    m_fstream;
     };
 }
 

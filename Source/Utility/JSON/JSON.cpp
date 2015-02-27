@@ -21,3 +21,35 @@ bool JSON::parse(const char* jsonstring)
 }
 
 // *****************************************************************************
+
+rapidjson::Value& JSON::getValue(const char* key)
+{
+    assert(m_document.HasMember(key));
+
+    return m_document[key];
+}
+
+// *****************************************************************************
+
+StringBuffer JSON::getStringBuffer()
+{
+    StringBuffer buffer;
+    Writer<StringBuffer> writer(buffer);
+    m_document.Accept(writer);
+    return buffer;
+}
+
+// *****************************************************************************
+
+bool JSON::loadFromFile(const char* file)
+{
+    if(!open(file))
+        return false;
+
+    if (!parse(getDataString().c_str()))
+        return false;
+
+    return true;
+}
+
+// *****************************************************************************

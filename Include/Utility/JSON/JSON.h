@@ -25,6 +25,11 @@ namespace Zero
         ~JSON() {}
 
         bool parse(const char* jsonstring);
+        bool loadFromFile(const char* file);
+
+        rapidjson::Value& getValue(const char* key);
+        rapidjson::Document* getDocument() { return &m_document; }
+        rapidjson::StringBuffer getStringBuffer();
 
     private:
         rapidjson::Document     m_document;
