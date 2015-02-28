@@ -12,11 +12,6 @@
 
 namespace Zero
 {
-    class Ruby
-    {
-    public:
-        int StartVM(int argc, char**argv);
-    };
 }
 
 

@@ -26,11 +26,16 @@ set(UTILITY_JSON_HEADER_FILES
 	"Include/Utility/JSON/SharedJSON.h"
 )
 
+set(UTILITY_RUBY_HEADER_FILES
+	"Include/Utility/Ruby/Ruby.h"
+)
+
 set(HEADER_FILES
 	${ROOT_HEADER_FILES}
 	${UTILITY_HEADER_FILES}
 	${UTILITY_FILE_HEADER_FILES}
 	${UTILITY_JSON_HEADER_FILES}
+	${UTILITY_RUBY_HEADER_FILES}
 )
 
 set(ROOT_SOURCE_FILES
@@ -45,10 +50,15 @@ set(UTILITY_JSON_SOURCE_FILES
 	"Source/Utility/JSON/JSON.cpp"
 )
 
+set(UTILITY_RUBY_SOURCE_FILES
+	"Source/Utility/Ruby/Ruby.cpp"
+)
+
 set(SOURCE_FILES
 	${ROOT_SOURCE_FILES}
 	${UTILITY_FILE_SOURCE_FILES}
 	${UTILITY_JSON_SOURCE_FILES}
+	${UTILITY_RUBY_SOURCE_FILES}
 )
 
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
@@ -57,11 +67,13 @@ source_group("Include" FILES ${ROOT_HEADER_FILES})
 source_group("Include\\Utility" FILES ${UTILITY_HEADER_FILES})
 source_group("Include\\Utility\\File" FILES ${UTILITY_FILE_HEADER_FILES})
 source_group("Include\\Utility\\JSON" FILES ${UTILITY_JSON_HEADER_FILES})
+source_group("Include\\Utility\\Ruby" FILES ${UTILITY_RUBY_HEADER_FILES})
 
 source_group("Source" FILES ${ROOT_SOURCE_FILES})
 source_group("Source\\Utility")
 source_group("Source\\Utility\\File" FILES ${UTILITY_FILE_SOURCE_FILES})
 source_group("Source\\Utility\\JSON" FILES ${UTILITY_JSON_SOURCE_FILES})
+source_group("Source\\Utility\\Ruby" FILES ${UTILITY_RUBY_SOURCE_FILES})
 
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
