@@ -7,6 +7,7 @@
 // *****************************************************************************
 
 #include "Module.h"
+#include "Test/Test.h"
 
 // *****************************************************************************
 
@@ -14,16 +15,12 @@ namespace Zero
 {
     namespace Ruby
     {
-        class ConsoleClass : public Class
-        {
-        public:
-            void init();
-        };
-
         class ZeroModule : public Module
         {
         public:
             void init();
+
+            Test m_test;
         };
     }
 }

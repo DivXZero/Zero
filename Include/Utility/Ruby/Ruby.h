@@ -6,7 +6,7 @@
 
 // *****************************************************************************
 
-#include "Modules/Module.h"
+#include "Modules/Zero.h"
 
 // *****************************************************************************
 
@@ -21,6 +21,10 @@ namespace Zero
             void init(int argc, char**argv);
             int run(const char* file);
             void shutdown();
+
+        private:
+            void loadModules();
+            ZeroModule m_zeroModule;
         };
     }
 }
