@@ -2,21 +2,16 @@
 // *****************************************************************************
 
 #include "Utility/Ruby/Ruby.h"
-#include <ruby.h>
 #include <iostream>
 
 // *****************************************************************************
 
 using namespace Zero;
+using namespace Zero::Ruby;
 
 // *****************************************************************************
 
-typedef VALUE (ruby_method)(...);
-extern "C" typedef VALUE RubyFunc;
-
-// *****************************************************************************
-
-static RubyFunc print(VALUE self, VALUE arg)
+static Function print(VALUE self, VALUE arg)
 {
     Check_Type(arg, T_STRING);
     std::cout << rb_string_value_cstr(&arg) << std::endl;
@@ -25,7 +20,7 @@ static RubyFunc print(VALUE self, VALUE arg)
 
 // *****************************************************************************
 
-void Ruby::init()
+void VM::init()
 {
     ruby_init();
     ruby_init_loadpath();
@@ -34,7 +29,7 @@ void Ruby::init()
 
 // *****************************************************************************
 
-void Ruby::init(int argc, char**argv)
+void VM::init(int argc, char**argv)
 {
     ruby_sysinit(&argc, &argv);
     init();
@@ -42,14 +37,14 @@ void Ruby::init(int argc, char**argv)
 
 // *****************************************************************************
 
-void Ruby::shutdown()
+void VM::shutdown()
 {
     ruby_finalize();
 }
 
 // *****************************************************************************
 
-int Ruby::run(const char* file)
+int VM::run(const char* file)
 {
     int status;
 

@@ -30,12 +30,20 @@ set(UTILITY_RUBY_HEADER_FILES
 	"Include/Utility/Ruby/Ruby.h"
 )
 
+set(UTILITY_RUBY_MODULE_HEADER_FILES
+	"Include/Utility/Ruby/Modules/Module.h"
+	"Include/Utility/Ruby/Modules/Class.h"
+	"Include/Utility/Ruby/Modules/Function.h"
+	"Include/Utility/Ruby/Modules/Zero.h"
+)
+
 set(HEADER_FILES
 	${ROOT_HEADER_FILES}
 	${UTILITY_HEADER_FILES}
 	${UTILITY_FILE_HEADER_FILES}
 	${UTILITY_JSON_HEADER_FILES}
 	${UTILITY_RUBY_HEADER_FILES}
+	${UTILITY_RUBY_MODULE_HEADER_FILES}
 )
 
 set(ROOT_SOURCE_FILES
@@ -54,11 +62,19 @@ set(UTILITY_RUBY_SOURCE_FILES
 	"Source/Utility/Ruby/Ruby.cpp"
 )
 
+set(UTILITY_RUBY_MODULE_SOURCE_FILES
+	"Source/Utility/Ruby/Modules/Module.cpp"
+	"Source/Utility/Ruby/Modules/Class.cpp"
+	"Source/Utility/Ruby/Modules/Function.cpp"
+	"Source/Utility/Ruby/Modules/Zero.cpp"
+)
+
 set(SOURCE_FILES
 	${ROOT_SOURCE_FILES}
 	${UTILITY_FILE_SOURCE_FILES}
 	${UTILITY_JSON_SOURCE_FILES}
 	${UTILITY_RUBY_SOURCE_FILES}
+	${UTILITY_RUBY_MODULE_SOURCE_FILES}
 )
 
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
@@ -68,12 +84,14 @@ source_group("Include\\Utility" FILES ${UTILITY_HEADER_FILES})
 source_group("Include\\Utility\\File" FILES ${UTILITY_FILE_HEADER_FILES})
 source_group("Include\\Utility\\JSON" FILES ${UTILITY_JSON_HEADER_FILES})
 source_group("Include\\Utility\\Ruby" FILES ${UTILITY_RUBY_HEADER_FILES})
+source_group("Include\\Utility\\Ruby\\Modules" FILES ${UTILITY_RUBY_MODULE_HEADER_FILES})
 
 source_group("Source" FILES ${ROOT_SOURCE_FILES})
 source_group("Source\\Utility")
 source_group("Source\\Utility\\File" FILES ${UTILITY_FILE_SOURCE_FILES})
 source_group("Source\\Utility\\JSON" FILES ${UTILITY_JSON_SOURCE_FILES})
 source_group("Source\\Utility\\Ruby" FILES ${UTILITY_RUBY_SOURCE_FILES})
+source_group("Source\\Utility\\Ruby\\Modules" FILES ${UTILITY_RUBY_MODULE_SOURCE_FILES})
 
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)

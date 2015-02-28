@@ -1,12 +1,12 @@
 
 // *****************************************************************************
 
-#ifndef __ZERO_UTILITY_RUBY_H__
-#define __ZERO_UTILITY_RUBY_H__
+#ifndef __ZERO_LIB_RUBY_MODULE_H__
+#define __ZERO_LIB_RUBY_MODULE_H__
 
 // *****************************************************************************
 
-#include "Modules/Module.h"
+#include "Module.h"
 
 // *****************************************************************************
 
@@ -14,17 +14,20 @@ namespace Zero
 {
     namespace Ruby
     {
-        class VM
+        class ConsoleClass : public Class
         {
         public:
             void init();
-            void init(int argc, char**argv);
-            int run(const char* file);
-            void shutdown();
+        };
+
+        class ZeroModule : public Module
+        {
+        public:
+            void init();
         };
     }
 }
 
 // *****************************************************************************
 
-#endif  // __ZERO_UTILITY_RUBY_H__
+#endif  // __ZERO_LIB_RUBY_MODULE_H__

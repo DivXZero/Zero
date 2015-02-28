@@ -1,12 +1,12 @@
 
 // *****************************************************************************
 
-#ifndef __ZERO_UTILITY_RUBY_H__
-#define __ZERO_UTILITY_RUBY_H__
+#ifndef __ZERO_RUBY_FUNCTION_H__
+#define __ZERO_RUBY_FUNCTION_H__
 
 // *****************************************************************************
 
-#include "Modules/Module.h"
+#include <ruby.h>
 
 // *****************************************************************************
 
@@ -14,17 +14,12 @@ namespace Zero
 {
     namespace Ruby
     {
-        class VM
-        {
-        public:
-            void init();
-            void init(int argc, char**argv);
-            int run(const char* file);
-            void shutdown();
-        };
+        typedef VALUE(ruby_method)(...);
+        extern "C" typedef VALUE Func;
+        extern "C" typedef VALUE Function;
     }
 }
 
 // *****************************************************************************
 
-#endif  // __ZERO_UTILITY_RUBY_H__
+#endif  // __ZERO_RUBY_FUNCTION_H__
