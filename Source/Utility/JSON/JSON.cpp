@@ -46,8 +46,10 @@ bool JSON::loadFromFile(const char* file)
     if(!open(file))
         return false;
 
-    if (!parse(getDataString().c_str()))
+    if (!parse(getContentString().c_str()))
         return false;
+
+    //close();
 
     return true;
 }

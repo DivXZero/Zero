@@ -23,12 +23,11 @@ namespace Zero
         ~File() {}
 
         bool open(const char* file);
-        std::string getDataString();
+        std::string getContentString();
 
     private:
         std::string     m_strContent;
         const char*     m_fname;
-        std::fstream    m_fstream;
     };
 }
 
