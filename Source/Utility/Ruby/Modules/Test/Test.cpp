@@ -2,6 +2,8 @@
 // *****************************************************************************
 
 #include "Utility/Ruby/Modules/Test/Test.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/random.hpp"
 #include <iostream>
 
 // *****************************************************************************
@@ -28,11 +30,20 @@ static Function add(VALUE self, VALUE arg1, VALUE arg2)
 
 // *****************************************************************************
 
+static Function random(VALUE self, VALUE min, VALUE max)
+{
+    double rnd = glm::linearRand(NUM2DBL(min), NUM2DBL(max));
+    return DBL2NUM(rnd);
+}
+
+// *****************************************************************************
+
 void Test::init()
 {
     //defineFunction("print", (Function*)&print, 1);
     rb_define_method(get(), "print", (ruby_method*)&print, 1);
     rb_define_method(get(), "add", (ruby_method*)&add, 2);
+    rb_define_method(get(), "random", (ruby_method*)&random, 2);
 }
 
 // *****************************************************************************
