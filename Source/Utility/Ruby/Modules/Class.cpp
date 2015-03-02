@@ -29,5 +29,3 @@ void Class::defineFunction(const char* name, Function* func, int args)
 {
     rb_define_method(get(), name, (ruby_method*)&func, args);
 }
-
-// *****************************************************************************

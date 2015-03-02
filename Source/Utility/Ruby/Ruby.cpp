@@ -1,6 +1,7 @@
 
 // *****************************************************************************
 
+#include "Utility/Ruby/Modules/Function.h"
 #include "Utility/Ruby/Ruby.h"
 #include <iostream>
 
@@ -13,9 +14,12 @@ using namespace Zero::Ruby;
 
 void VM::init()
 {
+    RUBY_INIT_STACK;
     ruby_init();
     ruby_init_loadpath();
     rb_set_safe_level(0);
+
+    loadModules();
 }
 
 // *****************************************************************************
@@ -42,13 +46,26 @@ void VM::loadModules()
 
 // *****************************************************************************
 
-int VM::run(const char* file)
+static Function my_thread(const char* file)
 {
     int status;
 
-    ruby_script(file);
+    rb_load_protect(rb_str_new2(file), 0, &status);
+    if (status) {
+        VALUE rbError = rb_funcall(rb_gv_get("$!"), rb_intern("message"), 0);
+        std::cerr << StringValuePtr(rbError) << std::endl;
+    };
 
-    loadModules();
+    return INT2NUM(status);
+}
+
+// *****************************************************************************
+
+int VM::run(const char* file)
+{
+    //ruby_script(file);
+
+    //loadModules();
 
     /*
     VALUE hardware_list;
@@ -59,13 +76,19 @@ int VM::run(const char* file)
     rb_ary_push(hardware_list, rb_str_new2("CDPlayer2"));
     */
 
+    int status;
     rb_load_protect(rb_str_new2(file), 0, &status);
     if (status) {
         VALUE rbError = rb_funcall(rb_gv_get("$!"), rb_intern("message"), 0);
         std::cerr << StringValuePtr(rbError) << std::endl;
     };
+    
 
-    return status;
+    //VALUE myThread = my_thread(file);
+    //VALUE argv[1];
+    //VALUE thread = rb_thread_create((ruby_method*)&myThread, argv);
+
+    return status;//NUM2INT(myThread);
 }
 
 // *****************************************************************************

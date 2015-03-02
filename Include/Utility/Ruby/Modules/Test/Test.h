@@ -14,10 +14,16 @@ namespace Zero
 {
     namespace Ruby
     {
+        typedef struct _test {
+            int id;
+        } TestStruct;
+
         class Test : public Class
         {
         public:
             void init();
+
+            static int id;
         };
     }
 }
