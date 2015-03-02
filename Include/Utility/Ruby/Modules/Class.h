@@ -14,23 +14,38 @@ namespace Zero
 {
     namespace Ruby
     {
+        // *********************************************************************
+
         class Module;
+
+        // *********************************************************************
 
         class Class
         {
         public:
-            virtual void init() = 0;
+            template <class T> void init() {
+                rb_define_singleton_method(get(), "new", (ruby_method*)classNew<T>, 0);
+            }
 
             void define(const char* name);
             void defineUnder(Module* parent, const char* name);
 
-            void defineFunction(const char* name, Function* func, int args);
+            void defineFunction(const char* name, VALUE* func, int args);
 
             VALUE get() { Check_Type(m_class, T_CLASS); return m_class; }
 
         private:
             VALUE m_class;
         };
+
+        // *********************************************************************
+
+        template <class T> struct _ruby_struct {
+            T* ptr;
+        };
+        template <class T> using RubyStruct = _ruby_struct<T>;
+
+        // *********************************************************************
 
         template <class T> T* classPtr(VALUE self)
         {
@@ -39,11 +54,15 @@ namespace Zero
             return ptr->ptr;
         }
 
+        // *********************************************************************
+
         template <class T> void classDel(RubyStruct<T>* ptr)
         {
             delete ptr->ptr;
             delete ptr;
         }
+
+        // *********************************************************************
 
         template <class T> VALUE classNew(VALUE self)
         {
@@ -52,11 +71,13 @@ namespace Zero
 
             VALUE argv[1];
 
-            VALUE tdata = Data_Wrap_Struct(self, 0, classDel<Test>, ptr);
+            VALUE tdata = Data_Wrap_Struct(self, 0, classDel<T>, ptr);
             rb_obj_call_init(tdata, 0, argv);
 
             return tdata;
         }
+
+        // *********************************************************************
     }
 }
 

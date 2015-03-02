@@ -60,7 +60,7 @@ namespace Zero
 
             // *****************************************************************
 
-            static Function set(VALUE self)
+            static Function test_set(VALUE self)
             {
                 rb_iv_set(self, "@testvar", INT2NUM(7));
                 return Qnil;
@@ -68,14 +68,14 @@ namespace Zero
 
             // *****************************************************************
 
-            static Function getWidth(VALUE self)
+            static Function test_getWidth(VALUE self)
             {
                 return rb_iv_get(self, "@width");
             }
 
             // *****************************************************************
 
-            static Function create(VALUE self, VALUE args)
+            static Function test_create(VALUE self, VALUE args)
             {
                 Check_Type(args, T_HASH);
                 VALUE title = rb_hash_aref(args, rb_eval_string(":title")); // vs. rb_str_new2("title")

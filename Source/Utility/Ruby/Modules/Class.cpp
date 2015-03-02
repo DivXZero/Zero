@@ -25,7 +25,7 @@ void Class::defineUnder(Module* parent, const char* name)
 
 // *****************************************************************************
 
-void Class::defineFunction(const char* name, Function* func, int args)
+void Class::defineFunction(const char* name, VALUE* func, int args)
 {
-    rb_define_method(get(), name, (ruby_method*)&func, args);
+    rb_define_method(get(), name, (ruby_method*)func, args);
 }

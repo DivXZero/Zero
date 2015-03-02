@@ -63,9 +63,7 @@ static Function my_thread(const char* file)
 
 int VM::run(const char* file)
 {
-    //ruby_script(file);
-
-    //loadModules();
+    ruby_script(file);
 
     /*
     VALUE hardware_list;
@@ -87,6 +85,8 @@ int VM::run(const char* file)
     //VALUE myThread = my_thread(file);
     //VALUE argv[1];
     //VALUE thread = rb_thread_create((ruby_method*)&myThread, argv);
+
+    
 
     return status;//NUM2INT(myThread);
 }
