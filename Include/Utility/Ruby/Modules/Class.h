@@ -31,6 +31,32 @@ namespace Zero
         private:
             VALUE m_class;
         };
+
+        template <class T> T* classPtr(VALUE self)
+        {
+            RubyStruct<T>* ptr;
+            Data_Get_Struct(self, RubyStruct<T>, ptr);
+            return ptr->ptr;
+        }
+
+        template <class T> void classDel(RubyStruct<T>* ptr)
+        {
+            delete ptr->ptr;
+            delete ptr;
+        }
+
+        template <class T> VALUE classNew(VALUE self)
+        {
+            RubyStruct<T>* ptr = new RubyStruct<T>;
+            ptr->ptr = new T;
+
+            VALUE argv[1];
+
+            VALUE tdata = Data_Wrap_Struct(self, 0, classDel<Test>, ptr);
+            rb_obj_call_init(tdata, 0, argv);
+
+            return tdata;
+        }
     }
 }
 
