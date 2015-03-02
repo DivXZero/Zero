@@ -15,7 +15,6 @@ namespace Zero
     namespace Ruby
     {
         typedef VALUE(ruby_method)(...);
-        extern "C" typedef VALUE Func;
         extern "C" typedef VALUE Function;
     }
 }

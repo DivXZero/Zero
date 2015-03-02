@@ -29,3 +29,8 @@ void Class::defineFunction(const char* name, VALUE* func, int args)
 {
     rb_define_method(get(), name, (ruby_method*)func, args);
 }
+
+VALUE Class::callFunction(const char* func)
+{
+    return rb_funcall(get(), rb_intern(func), 0);
+}

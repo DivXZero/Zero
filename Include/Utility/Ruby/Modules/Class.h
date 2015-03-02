@@ -7,6 +7,7 @@
 // *****************************************************************************
 
 #include "Function.h"
+#include <memory>
 
 // *****************************************************************************
 
@@ -31,6 +32,7 @@ namespace Zero
             void defineUnder(Module* parent, const char* name);
 
             void defineFunction(const char* name, VALUE* func, int args);
+            VALUE callFunction(const char* func);
 
             VALUE get() { Check_Type(m_class, T_CLASS); return m_class; }
 
@@ -41,7 +43,7 @@ namespace Zero
         // *********************************************************************
 
         template <class T> struct _ruby_struct {
-            T* ptr;
+            std::unique_ptr<T> uniqPtr;
         };
         template <class T> using RubyStruct = _ruby_struct<T>;
 
@@ -51,14 +53,14 @@ namespace Zero
         {
             RubyStruct<T>* ptr;
             Data_Get_Struct(self, RubyStruct<T>, ptr);
-            return ptr->ptr;
+            return ptr->uniqPtr.get();
         }
 
         // *********************************************************************
 
         template <class T> void classDel(RubyStruct<T>* ptr)
         {
-            delete ptr->ptr;
+            ptr->uniqPtr.release();
             delete ptr;
         }
 
@@ -67,7 +69,7 @@ namespace Zero
         template <class T> VALUE classNew(VALUE self)
         {
             RubyStruct<T>* ptr = new RubyStruct<T>;
-            ptr->ptr = new T;
+            ptr->uniqPtr.reset(new T);
 
             VALUE argv[1];
 

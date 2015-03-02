@@ -53,7 +53,6 @@ namespace Zero
 
             static Function test_random(VALUE self, VALUE min, VALUE max)
             {
-                //rb_funcall(self, rb_intern("update"), 0);
                 double rnd = classPtr<Test>(self)->random(NUM2DBL(min), NUM2DBL(max));
                 return DBL2NUM(rnd);
             }
