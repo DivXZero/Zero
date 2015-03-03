@@ -7,38 +7,37 @@ include_directories("Include")
 include_directories("Dependencies/glm")
 include_directories("Dependencies/rapidjson/include")
 include_directories("Dependencies/ruby/usr/include/ruby-2.3.0")
+include_directories("C:/ruby/include/ruby-2.3.0")
 
 set(ROOT_HEADER_FILES
-	"Include/Zero.h"
+	"include/zero.h"
 )
 
 set(UTILITY_HEADER_FILES
-	"Include/Utility/Common.h"
+	"include/utility/common.h"
 )
 
 set(UTILITY_FILE_HEADER_FILES
-	"Include/Utility/File/File.h"
-	"Include/Utility/File/SharedFile.h"
+	"include/utility/file/file.h"
 )
 
 set(UTILITY_JSON_HEADER_FILES
-	"Include/Utility/JSON/JSON.h"
-	"Include/Utility/JSON/SharedJSON.h"
+	"include/utility/json/json.h"
 )
 
 set(UTILITY_RUBY_HEADER_FILES
-	"Include/Utility/Ruby/Ruby.h"
+	"include/utility/ruby/ruby.h"
 )
 
 set(UTILITY_RUBY_MODULE_HEADER_FILES
-	"Include/Utility/Ruby/Modules/Module.h"
-	"Include/Utility/Ruby/Modules/Class.h"
-	"Include/Utility/Ruby/Modules/Function.h"
-	"Include/Utility/Ruby/Modules/Zero.h"
+	"include/utility/ruby/modules/module.h"
+	"include/utility/ruby/modules/class.h"
+	"include/utility/ruby/modules/function.h"
+	"include/utility/ruby/modules/zero.h"
 )
 
 set(RUBY_MODULE_TEST_HEADER_FILES
-	"Include/Utility/Ruby/Modules/Test/Test.h"
+	"include/utility/ruby/modules/test/test.h"
 )
 
 set(HEADER_FILES
@@ -52,30 +51,30 @@ set(HEADER_FILES
 )
 
 set(ROOT_SOURCE_FILES
-	"Source/Zero.cpp"
+	"source/zero.cpp"
 )
 
 set(UTILITY_FILE_SOURCE_FILES
-	"Source/Utility/File/File.cpp"
+	"source/utility/file/file.cpp"
 )
 
 set(UTILITY_JSON_SOURCE_FILES
-	"Source/Utility/JSON/JSON.cpp"
+	"source/utility/json/json.cpp"
 )
 
 set(UTILITY_RUBY_SOURCE_FILES
-	"Source/Utility/Ruby/Ruby.cpp"
+	"source/utility/ruby/ruby.cpp"
 )
 
 set(UTILITY_RUBY_MODULE_SOURCE_FILES
-	"Source/Utility/Ruby/Modules/Module.cpp"
-	"Source/Utility/Ruby/Modules/Class.cpp"
-	"Source/Utility/Ruby/Modules/Function.cpp"
-	"Source/Utility/Ruby/Modules/Zero.cpp"
+	"source/utility/ruby/modules/module.cpp"
+	"source/utility/ruby/modules/class.cpp"
+	"source/utility/ruby/modules/function.cpp"
+	"source/utility/ruby/modules/zero.cpp"
 )
 
 set(RUBY_MODULE_TEST_SOURCE_FILES
-	"Source/Utility/Ruby/Modules/Test/Test.cpp"
+	"source/utility/ruby/modules/test/test.cpp"
 )
 
 set(SOURCE_FILES
@@ -114,6 +113,6 @@ endif()
 find_package(RUBY REQUIRED)
 if(RUBY_FOUND)
 	message(STATUS "Ruby ${RUBY_VERSION} Found")
-	#include_directories(${RUBY_INCLUDE_DIRS})
+	include_directories(${RUBY_INCLUDE_DIRS})
 	target_link_libraries(${PROJECT_NAME} ${RUBY_LIBRARY})
 endif()
