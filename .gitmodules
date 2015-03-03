@@ -1,9 +1,9 @@
-[submodule "Dependencies/rapidjson"]
-	path = Dependencies/rapidjson
+[submodule "dependencies/rapidjson"]
+	path = dependencies/rapidjson
 	url = https://github.com/miloyip/rapidjson.git
-[submodule "Dependencies/glm"]
-	path = Dependencies/glm
+[submodule "dependencies/glm"]
+	path = dependencies/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "Dependencies/ruby"]
-	path = Dependencies/ruby
+[submodule "dependencies/ruby"]
+	path = dependencies/ruby
 	url = https://github.com/ruby/ruby.git
