@@ -1,8 +1,8 @@
 
 // *****************************************************************************
 
-#include "Utility/Ruby/Modules/Class.h"
-#include "Utility/Ruby/Modules/Module.h"
+#include "utility/ruby/modules/class.h"
+#include "utility/ruby/modules/module.h"
 
 // *****************************************************************************
 
@@ -30,7 +30,11 @@ void Class::defineFunction(const char* name, VALUE* func, int args)
     rb_define_method(get(), name, (ruby_method*)func, args);
 }
 
+// *****************************************************************************
+
 VALUE Class::callFunction(const char* func)
 {
     return rb_funcall(get(), rb_intern(func), 0);
 }
+
+// *****************************************************************************

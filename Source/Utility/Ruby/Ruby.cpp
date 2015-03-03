@@ -1,8 +1,8 @@
 
 // *****************************************************************************
 
-#include "Utility/Ruby/Modules/Function.h"
-#include "Utility/Ruby/Ruby.h"
+#include "utility/ruby/modules/function.h"
+#include "utility/ruby/ruby.h"
 #include <iostream>
 
 // *****************************************************************************

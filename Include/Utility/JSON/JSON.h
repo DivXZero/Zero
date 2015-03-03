@@ -6,8 +6,7 @@
 
 // *****************************************************************************
 
-#include "SharedJSON.h"
-#include "../File/File.h"
+#include "../file/file.h"
 
 #include "rapidjson/reader.h"
 #include "rapidjson/writer.h"
@@ -18,7 +17,7 @@
 
 namespace Zero
 {
-    class JSON : public SharedJSON, private File
+    class JSON : private File
     {
     public:
         JSON() {}

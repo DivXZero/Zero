@@ -1,7 +1,7 @@
 
 // *****************************************************************************
 
-#include "Utility/Ruby/Modules/Test/Test.h"
+#include "utility/ruby/modules/test/test.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/random.hpp"
 #include <iostream>

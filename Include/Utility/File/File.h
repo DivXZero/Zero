@@ -6,8 +6,6 @@
 
 // *****************************************************************************
 
-#include "SharedFile.h"
-
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -16,7 +14,7 @@
 
 namespace Zero
 {
-    class File : public SharedFile
+    class File
     {
     public:
         File() {}
