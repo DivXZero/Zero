@@ -17,7 +17,7 @@ using namespace TestClass;
 void Test::init()
 {
     Class::init<Test>();
-    defineFunction("print", (Function*)&test_print, 1);
+    //defineFunction("print", (Function*)&test_print, 1);
     defineFunction("add", (Function*)&test_add, 2);
     defineFunction("random", (Function*)&test_random, 2);
     defineFunction("set", (Function*)&test_set, 0);
