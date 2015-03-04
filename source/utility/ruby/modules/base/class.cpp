@@ -1,8 +1,8 @@
 
 // *****************************************************************************
 
-#include "utility/ruby/modules/class.h"
-#include "utility/ruby/modules/module.h"
+#include "utility/ruby/modules/base/class.h"
+#include "utility/ruby/modules/base/module.h"
 
 // *****************************************************************************
 
@@ -21,6 +21,13 @@ void Class::define(const char* name)
 void Class::defineUnder(Module* parent, const char* name)
 {
     m_class = rb_define_class_under(parent->get(), name, rb_cObject);
+}
+
+// *****************************************************************************
+
+void Class::defineStaticFunction(const char* name, VALUE* func, int args)
+{
+    rb_define_singleton_method(get(), name, (ruby_method*)func, args);
 }
 
 // *****************************************************************************

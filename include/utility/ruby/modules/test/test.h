@@ -6,7 +6,7 @@
 
 // *****************************************************************************
 
-#include "../class.h"
+#include "../base/class.h"
 #include "utility/common.h"
 
 // *****************************************************************************
@@ -36,8 +36,7 @@ namespace Zero
 
             static Function test_print(VALUE self, VALUE arg)
             {
-                Check_Type(arg, T_STRING);
-                classPtr<Test>(self)->print(rb_string_value_cstr(&arg));
+                classPtr<Test>(self)->print(CSTR(arg));
                 return arg;
             }
 

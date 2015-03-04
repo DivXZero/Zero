@@ -19,7 +19,8 @@ namespace Zero
         public:
             void init();
             void init(int argc, char**argv);
-            int run(const char* file);
+            int load(const char* file);
+            void update();
             void shutdown();
 
         private:
