@@ -25,6 +25,8 @@ namespace Zero
 
             void resize();
 
+            void swapBuffers();
+
             void pollEvents();
 
         private:

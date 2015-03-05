@@ -17,6 +17,12 @@ set(ROOT_HEADER_FILES
 set(SYSTEM_HEADER_FILES
 )
 
+set(SYSTEM_GRAPHICS_HEADER_FILES
+	"include/system/graphics/scene.h"
+	"include/system/graphics/glscene.h"
+	"include/system/graphics/scenemanager.h"
+)
+
 set(SYSTEM_WINDOW_HEADER_FILES
 	"include/system/window/sharedwindow.h"
 	"include/system/window/win32window.h"
@@ -57,6 +63,7 @@ set(RUBY_MODULE_TEST_HEADER_FILES
 set(HEADER_FILES
 	${ROOT_HEADER_FILES}
 	${SYSTEM_HEADER_FILES}
+	${SYSTEM_GRAPHICS_HEADER_FILES}
 	${SYSTEM_WINDOW_HEADER_FILES}
 	${UTILITY_HEADER_FILES}
 	${UTILITY_FILE_HEADER_FILES}
@@ -72,6 +79,12 @@ set(ROOT_SOURCE_FILES
 )
 
 set(SYSTEM_SOURCE_FILES
+)
+
+set(SYSTEM_GRAPHICS_SOURCE_FILES
+	"source/system/graphics/scene.cpp"
+	"source/system/graphics/glscene.cpp"
+	"source/system/graphics/scenemanager.cpp"
 )
 
 set(SYSTEM_WINDOW_SOURCE_FILES
@@ -108,6 +121,7 @@ set(RUBY_MODULE_TEST_SOURCE_FILES
 set(SOURCE_FILES
 	${ROOT_SOURCE_FILES}
 	${SYSTEM_SOURCE_FILES}
+	${SYSTEM_GRAPHICS_SOURCE_FILES}
 	${SYSTEM_WINDOW_SOURCE_FILES}
 	${UTILITY_FILE_SOURCE_FILES}
 	${UTILITY_JSON_SOURCE_FILES}
@@ -121,6 +135,7 @@ add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
 
 source_group("include" FILES ${ROOT_HEADER_FILES})
 source_group("include\\system" FILES ${SYSTEM_HEADER_FILES})
+source_group("include\\system\\graphics" FILES ${SYSTEM_GRAPHICS_HEADER_FILES})
 source_group("include\\system\\window" FILES ${SYSTEM_WINDOW_HEADER_FILES})
 source_group("include\\utility" FILES ${UTILITY_HEADER_FILES})
 source_group("include\\utility\\file" FILES ${UTILITY_FILE_HEADER_FILES})
@@ -132,6 +147,7 @@ source_group("include\\utility\\ruby\\modules\\test" FILES ${RUBY_MODULE_TEST_HE
 
 source_group("source" FILES ${ROOT_SOURCE_FILES})
 source_group("source\\system" FILES ${SYSTEM_SOURCE_FILES})
+source_group("source\\system\\graphics" FILES ${SYSTEM_GRAPHICS_SOURCE_FILES})
 source_group("source\\system\\window" FILES ${SYSTEM_WINDOW_SOURCE_FILES})
 source_group("source\\utility")
 source_group("source\\utility\\file" FILES ${UTILITY_FILE_SOURCE_FILES})

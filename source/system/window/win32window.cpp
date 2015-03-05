@@ -64,7 +64,7 @@ bool Win32Window::create()
     if (m_hWnd == NULL)
         return false;
 
-    //m_hDC = GetDC(m_hWnd);
+    m_hDC = GetDC(m_hWnd);
 
     ShowWindow(m_hWnd, 1);
     UpdateWindow(m_hWnd);
@@ -101,6 +101,13 @@ void Win32Window::pollEvents()
 
         DispatchMessage(&m_msg);
     }
+}
+
+// *****************************************************************************
+
+void Win32Window::swapBuffers()
+{
+    SwapBuffers(m_hDC);
 }
 
 // *****************************************************************************

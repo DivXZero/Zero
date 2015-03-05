@@ -23,9 +23,11 @@ bool SFMLWindow::create()
     m_style = (m_isFullscreen) ? sf::Style::Fullscreen : sf::Style::Close;
 
     m_window.create(m_videoMode, m_title, m_style, m_contextSettings);
-    m_window.setVerticalSyncEnabled(true);
+    //m_window.setVerticalSyncEnabled(true);
 
-    return m_window.isOpen();
+    m_isOpen = m_window.isOpen();
+
+    return m_isOpen;
 }
 
 // *****************************************************************************
@@ -39,6 +41,7 @@ void SFMLWindow::resize()
 
 void SFMLWindow::destroy()
 {
+    m_isOpen = false;
     m_window.close();
 }
 
@@ -47,6 +50,14 @@ void SFMLWindow::destroy()
 void SFMLWindow::pollEvents()
 {
     m_window.pollEvent(m_event);
+
+    if (m_event.type == sf::Event::Closed)
+        destroy();
 }
 
 // *****************************************************************************
+
+void SFMLWindow::swapBuffers()
+{
+    m_window.display();
+}

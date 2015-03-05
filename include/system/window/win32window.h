@@ -27,6 +27,8 @@ namespace Zero
 
             void pollEvents();
 
+            void swapBuffers();
+
         private:
             WNDCLASSEX      m_wndClass;
             HWND            m_hWnd;
