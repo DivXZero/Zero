@@ -7,3 +7,6 @@
 [submodule "dependencies/ruby"]
 	path = dependencies/ruby
 	url = https://github.com/ruby/ruby.git
+[submodule "dependencies/SFML"]
+	path = dependencies/SFML
+	url = https://github.com/LaurentGomila/SFML.git

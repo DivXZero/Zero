@@ -8,9 +8,19 @@ include_directories("Dependencies/glm")
 include_directories("Dependencies/rapidjson/include")
 include_directories("Dependencies/ruby/usr/include/ruby-2.3.0")
 include_directories("C:/ruby/include/ruby-2.3.0")
+set(SFML_INCLUDE_DIR "dependencies/SFML/include")
 
 set(ROOT_HEADER_FILES
 	"include/zero.h"
+)
+
+set(SYSTEM_HEADER_FILES
+)
+
+set(SYSTEM_WINDOW_HEADER_FILES
+	"include/system/window/sharedwindow.h"
+	"include/system/window/win32window.h"
+	"include/system/window/sfmlwindow.h"
 )
 
 set(UTILITY_HEADER_FILES
@@ -46,6 +56,8 @@ set(RUBY_MODULE_TEST_HEADER_FILES
 
 set(HEADER_FILES
 	${ROOT_HEADER_FILES}
+	${SYSTEM_HEADER_FILES}
+	${SYSTEM_WINDOW_HEADER_FILES}
 	${UTILITY_HEADER_FILES}
 	${UTILITY_FILE_HEADER_FILES}
 	${UTILITY_JSON_HEADER_FILES}
@@ -57,6 +69,14 @@ set(HEADER_FILES
 
 set(ROOT_SOURCE_FILES
 	"source/zero.cpp"
+)
+
+set(SYSTEM_SOURCE_FILES
+)
+
+set(SYSTEM_WINDOW_SOURCE_FILES
+	"source/system/window/win32window.cpp"
+	"source/system/window/sfmlwindow.cpp"
 )
 
 set(UTILITY_FILE_SOURCE_FILES
@@ -87,6 +107,8 @@ set(RUBY_MODULE_TEST_SOURCE_FILES
 
 set(SOURCE_FILES
 	${ROOT_SOURCE_FILES}
+	${SYSTEM_SOURCE_FILES}
+	${SYSTEM_WINDOW_SOURCE_FILES}
 	${UTILITY_FILE_SOURCE_FILES}
 	${UTILITY_JSON_SOURCE_FILES}
 	${UTILITY_RUBY_SOURCE_FILES}
@@ -98,6 +120,8 @@ set(SOURCE_FILES
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
 
 source_group("include" FILES ${ROOT_HEADER_FILES})
+source_group("include\\system" FILES ${SYSTEM_HEADER_FILES})
+source_group("include\\system\\window" FILES ${SYSTEM_WINDOW_HEADER_FILES})
 source_group("include\\utility" FILES ${UTILITY_HEADER_FILES})
 source_group("include\\utility\\file" FILES ${UTILITY_FILE_HEADER_FILES})
 source_group("include\\utility\\json" FILES ${UTILITY_JSON_HEADER_FILES})
@@ -107,6 +131,8 @@ source_group("include\\utility\\ruby\\modules\\base" FILES ${UTILITY_RUBY_MODULE
 source_group("include\\utility\\ruby\\modules\\test" FILES ${RUBY_MODULE_TEST_HEADER_FILES})
 
 source_group("source" FILES ${ROOT_SOURCE_FILES})
+source_group("source\\system" FILES ${SYSTEM_SOURCE_FILES})
+source_group("source\\system\\window" FILES ${SYSTEM_WINDOW_SOURCE_FILES})
 source_group("source\\utility")
 source_group("source\\utility\\file" FILES ${UTILITY_FILE_SOURCE_FILES})
 source_group("source\\utility\\json" FILES ${UTILITY_JSON_SOURCE_FILES})
@@ -114,6 +140,8 @@ source_group("source\\utility\\ruby" FILES ${UTILITY_RUBY_SOURCE_FILES})
 source_group("source\\utility\\ruby\\modules" FILES ${UTILITY_RUBY_MODULE_SOURCE_FILES})
 source_group("source\\utility\\ruby\\modules\\base" FILES ${UTILITY_RUBY_MODULE_BASE_SOURCE_FILES})
 source_group("source\\utility\\ruby\\modules\\test" FILES ${RUBY_MODULE_TEST_SOURCE_FILES})
+
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
@@ -126,4 +154,14 @@ if(RUBY_FOUND)
 	message(STATUS "Ruby ${RUBY_VERSION} Found")
 	include_directories(${RUBY_INCLUDE_DIRS})
 	target_link_libraries(${PROJECT_NAME} ${RUBY_LIBRARY})
+endif()
+
+if(WIN32)
+	set(SFML_STATIC_LIBRARIES TRUE)
+endif()
+find_package(SFML 2 REQUIRED system window graphics audio)
+if(SFML_FOUND)
+	include_directories(${SFML_INCLUDE_DIR})
+	target_link_libraries(${PROJECT_NAME} ${SFML_DEPENDENCIES})
+	target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES})
 endif()
