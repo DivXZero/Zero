@@ -19,6 +19,7 @@ namespace Zero
         class SceneManager
         {
         public:
+            template <class T> void push() { push(std::make_shared<T>()); }
             void push(std::shared_ptr<Scene> scene);
             void pop();
 

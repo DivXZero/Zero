@@ -8,6 +8,7 @@
 
 #include "singleton.h"
 #include "json/json.h"
+#include "ruby/ruby.h"
 
 // *****************************************************************************
 

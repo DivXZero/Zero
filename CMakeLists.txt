@@ -12,6 +12,7 @@ set(SFML_INCLUDE_DIR "dependencies/SFML/include")
 
 set(ROOT_HEADER_FILES
 	"include/zero.h"
+	"include/game.h"
 )
 
 set(SYSTEM_HEADER_FILES
@@ -76,6 +77,7 @@ set(HEADER_FILES
 
 set(ROOT_SOURCE_FILES
 	"source/zero.cpp"
+	"source/game.cpp"
 )
 
 set(SYSTEM_SOURCE_FILES

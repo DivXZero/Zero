@@ -7,7 +7,6 @@
 // *****************************************************************************
 
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 
 #include "sharedwindow.h"
 

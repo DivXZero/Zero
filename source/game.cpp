@@ -1,39 +1,59 @@
 
 // *****************************************************************************
 
-#include "system/graphics/glscene.h"
+#include "game.h"
+#include <memory>
+#include "system/window/sfmlwindow.h"
 
 // *****************************************************************************
 
 using namespace Zero;
 using namespace Graphics;
+using namespace System;
 
 // *****************************************************************************
 
-void GLScene::init()
+void Game::init()
 {
-    glClearColor(0.35f, 0.75f, 1.0f, 1.0f);
-
-    glEnable(GL_DEPTH_TEST);
+    TEMPscriptMgr()->init(0, 0);
+    setWindow(std::make_shared<SFMLWindow>());
 }
 
 // *****************************************************************************
 
-void GLScene::update()
+void Game::update()
 {
+    sceneMgr()->update();
+    window()->pollEvents();
+    //TEMPscriptMgr()->update();
 }
 
 // *****************************************************************************
 
-void GLScene::render()
+void Game::render()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    sceneMgr()->render();
+    window()->swapBuffers();
 }
 
 // *****************************************************************************
 
-void GLScene::cleanup()
+void Game::run()
 {
+    update();
+    render();
+
+    if (window()->isOpen())
+    {
+        run();
+    }    
+}
+
+// *****************************************************************************
+
+void Game::cleanup()
+{
+    TEMPscriptMgr()->shutdown();
 }
 
 // *****************************************************************************

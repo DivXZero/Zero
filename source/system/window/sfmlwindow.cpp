@@ -2,6 +2,7 @@
 // *****************************************************************************
 
 #include "system/window/sfmlwindow.h"
+#include <iostream>
 
 // *****************************************************************************
 
@@ -23,9 +24,11 @@ bool SFMLWindow::create()
     m_style = (m_isFullscreen) ? sf::Style::Fullscreen : sf::Style::Close;
 
     m_window.create(m_videoMode, m_title, m_style, m_contextSettings);
-    //m_window.setVerticalSyncEnabled(true);
+    m_window.setVerticalSyncEnabled(true);
 
     m_isOpen = m_window.isOpen();
+
+    std::cout << "OpenGL " << m_window.getSettings().majorVersion << "." << m_window.getSettings().minorVersion << std::endl;
 
     return m_isOpen;
 }
