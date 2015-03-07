@@ -22,7 +22,7 @@ namespace Zero
         class Win32Window : public SharedWindow
         {
         public:
-            bool create();
+            bool create(int width, int height, const char* title, bool fullscreen);
             void destroy() {}
 
             void pollEvents();

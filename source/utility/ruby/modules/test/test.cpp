@@ -1,6 +1,7 @@
 
 // *****************************************************************************
 
+#include "game.h"
 #include "utility/ruby/modules/test/test.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/random.hpp"
@@ -23,6 +24,7 @@ void Test::init()
     defineFunction("set", (Function*)&test_set, 0);
     defineFunction("getWidth", (Function*)&test_getWidth, 0);
     defineFunction("create", (Function*)&test_create, 1);
+    defineFunction("scene_count", (Function*)&test_scene_count, 0);
 }
 
 // *****************************************************************************
@@ -47,3 +49,8 @@ double Test::random(double min, double max)
 }
 
 // *****************************************************************************
+
+int Test::getSceneCount()
+{
+    return ZeroGame::Instance()->sceneMgr()->sceneCount();
+}

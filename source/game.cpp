@@ -23,8 +23,10 @@ void Game::init()
 
 void Game::update()
 {
-    sceneMgr()->update();
     window()->pollEvents();
+    sceneMgr()->update();
+
+    // This will crash after some time
     //TEMPscriptMgr()->update();
 }
 

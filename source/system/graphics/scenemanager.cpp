@@ -24,6 +24,8 @@ void SceneManager::pop()
     {
         currentScene()->cleanup();
         m_sceneStack.pop();
+        if (hasScene())
+            currentScene()->init();
     }
 }
 

@@ -11,12 +11,12 @@ using namespace System;
 
 // *****************************************************************************
 
-bool SFMLWindow::create()
+bool SFMLWindow::create(int width, int height, const char* title, bool fullscreen)
 {
-    m_width = 640;
-    m_height = 480;
-    m_title = "Zero";
-    m_isFullscreen = false;
+    m_width = width;
+    m_height = height;
+    m_title = title;
+    m_isFullscreen = fullscreen;
 
     m_contextSettings.antialiasingLevel = 8;
 
@@ -24,11 +24,11 @@ bool SFMLWindow::create()
     m_style = (m_isFullscreen) ? sf::Style::Fullscreen : sf::Style::Close;
 
     m_window.create(m_videoMode, m_title, m_style, m_contextSettings);
+
+    resize();
     m_window.setVerticalSyncEnabled(true);
 
     m_isOpen = m_window.isOpen();
-
-    std::cout << "OpenGL " << m_window.getSettings().majorVersion << "." << m_window.getSettings().minorVersion << std::endl;
 
     return m_isOpen;
 }
@@ -37,7 +37,7 @@ bool SFMLWindow::create()
 
 void SFMLWindow::resize()
 {
-    //glViewport(0, 0, m_window.getSize().x, m_window.getSize().y);
+    glViewport(0, 0, m_window.getSize().x, m_window.getSize().y);
 }
 
 // *****************************************************************************
@@ -52,10 +52,14 @@ void SFMLWindow::destroy()
 
 void SFMLWindow::pollEvents()
 {
-    m_window.pollEvent(m_event);
+    while (m_window.pollEvent(m_event))
+    {
+        if (m_event.type == sf::Event::Closed)
+            destroy();
 
-    if (m_event.type == sf::Event::Closed)
-        destroy();
+        if (m_event.type == sf::Event::Resized)
+            resize();
+    }
 }
 
 // *****************************************************************************

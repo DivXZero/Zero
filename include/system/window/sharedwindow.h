@@ -13,10 +13,10 @@ namespace Zero
         class SharedWindow
         {
         public:
-            virtual bool create() = 0;
+            virtual bool create(int width = 640, int height = 480, const char* title = "Zero", bool fullscreen = false) = 0;
             virtual void destroy() = 0;
 
-            //virtual void resize() = 0;
+            virtual void resize() = 0;
 
             virtual void swapBuffers() = 0;
 

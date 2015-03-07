@@ -39,7 +39,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 // *****************************************************************************
 
-bool Win32Window::create()
+bool Win32Window::create(int width, int height, const char* title, bool fullscreen)
 {
     HINSTANCE hModule = GetModuleHandle(0);
 

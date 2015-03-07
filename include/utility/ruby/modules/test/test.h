@@ -25,6 +25,7 @@ namespace Zero
             void print(const char* msg);
             int add(int arg1, int arg2);
             double random(double min, double max);
+            int getSceneCount();
         };
 
         // *********************************************************************
@@ -82,6 +83,12 @@ namespace Zero
             }
 
             // *****************************************************************
+
+            static Function test_scene_count(VALUE self)
+            {
+                int count = classPtr<Test>(self)->getSceneCount();
+                return INT2NUM(count);
+            }
         }
     }
 }

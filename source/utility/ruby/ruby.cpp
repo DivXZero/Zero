@@ -93,11 +93,12 @@ int VM::load(const char* file)
 
 // *****************************************************************************
 
-VALUE _update(VALUE self)
+VALUE _update(VALUE nil)
 {
-    rb_funcall(rb_mKernel, rb_intern("update"), 0);
-    return Qnil;
+    return rb_funcall(rb_mKernel, rb_intern("update"), 0);
 }
+
+// *****************************************************************************
 
 void VM::update()
 {

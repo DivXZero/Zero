@@ -7,7 +7,7 @@
 // *****************************************************************************
 
 #include <SFML/Graphics.hpp>
-
+#include <SFML/OpenGL.hpp>
 #include "sharedwindow.h"
 
 // *****************************************************************************
@@ -19,7 +19,7 @@ namespace Zero
         class SFMLWindow : public SharedWindow
         {
         public:
-            bool create();
+            bool create(int width, int height, const char* title, bool fullscreen);
             void destroy();
 
             void resize();
