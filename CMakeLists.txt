@@ -33,6 +33,7 @@ set(SYSTEM_WINDOW_HEADER_FILES
 set(UTILITY_HEADER_FILES
 	"include/utility/common.h"
 	"include/utility/singleton.h"
+	"include/utility/timer.h"
 )
 
 set(UTILITY_FILE_HEADER_FILES

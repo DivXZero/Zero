@@ -2,6 +2,7 @@
 // *****************************************************************************
 
 #include "game.h"
+#include "system/graphics/glscene.h"
 #include "utility/ruby/modules/test/test.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/random.hpp"
@@ -21,10 +22,12 @@ void Test::init()
     //defineFunction("print", (Function*)&test_print, 1);
     defineFunction("add", (Function*)&test_add, 2);
     defineFunction("random", (Function*)&test_random, 2);
-    defineFunction("set", (Function*)&test_set, 0);
-    defineFunction("getWidth", (Function*)&test_getWidth, 0);
+    defineFunction("set", (Function*)&test_set);
+    defineFunction("getWidth", (Function*)&test_getWidth);
     defineFunction("create", (Function*)&test_create, 1);
-    defineFunction("scene_count", (Function*)&test_scene_count, 0);
+    defineFunction("scene_count", (Function*)&test_scene_count);
+    defineFunction("push_scene", (Function*)&test_scene_push);
+    defineFunction("pop_scene", (Function*)&test_scene_pop);
 }
 
 // *****************************************************************************
@@ -52,5 +55,19 @@ double Test::random(double min, double max)
 
 int Test::getSceneCount()
 {
-    return ZeroGame::Instance()->sceneMgr()->sceneCount();
+    return getGame()->sceneMgr()->sceneCount();
+}
+
+// *****************************************************************************
+
+void Test::pushScene()
+{
+    getGame()->sceneMgr()->push<Graphics::GLScene>();
+}
+
+// *****************************************************************************
+
+void Test::popScene()
+{
+    getGame()->sceneMgr()->pop();
 }

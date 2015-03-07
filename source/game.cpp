@@ -13,27 +13,42 @@ using namespace System;
 
 // *****************************************************************************
 
+IMPLEMENT_SINGLETON(Game)
+
+// *****************************************************************************
+
 void Game::init()
 {
+    setWindow(new SFMLWindow());
+    setSceneMgr(new Graphics::SceneManager());
+
+    setScriptMgr(new Ruby::VM);
     TEMPscriptMgr()->init(0, 0);
-    setWindow(std::make_shared<SFMLWindow>());
+
+    m_timer.start();
 }
 
 // *****************************************************************************
 
 void Game::update()
 {
+    m_updateTime = m_timer.elapsedTime();
+
+    if (m_updateTime > 0.25f)
+        m_updateTime = 0.25f;
+
+    m_accumTime += m_updateTime;
+
     window()->pollEvents();
-    sceneMgr()->update();
 
-    // This will crash after some time
-    //TEMPscriptMgr()->update();
-}
+    while (m_accumTime >= m_deltaTime)
+    {
+        sceneMgr()->update();
+        TEMPscriptMgr()->update();
 
-// *****************************************************************************
+        m_accumTime -= m_deltaTime;
+    }
 
-void Game::render()
-{
     sceneMgr()->render();
     window()->swapBuffers();
 }
@@ -42,12 +57,9 @@ void Game::render()
 
 void Game::run()
 {
-    update();
-    render();
-
-    if (window()->isOpen())
+    while (window()->isOpen())
     {
-        run();
+        update();
     }    
 }
 

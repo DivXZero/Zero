@@ -26,6 +26,8 @@ namespace Zero
             int add(int arg1, int arg2);
             double random(double min, double max);
             int getSceneCount();
+            void pushScene();
+            void popScene();
         };
 
         // *********************************************************************
@@ -88,6 +90,22 @@ namespace Zero
             {
                 int count = classPtr<Test>(self)->getSceneCount();
                 return INT2NUM(count);
+            }
+
+            // *****************************************************************
+
+            static Function test_scene_push(VALUE self)
+            {
+                classPtr<Test>(self)->pushScene();
+                return Qnil;
+            }
+
+            // *****************************************************************
+
+            static Function test_scene_pop(VALUE self)
+            {
+                classPtr<Test>(self)->popScene();
+                return Qnil;
             }
         }
     }

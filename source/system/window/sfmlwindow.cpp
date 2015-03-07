@@ -66,5 +66,6 @@ void SFMLWindow::pollEvents()
 
 void SFMLWindow::swapBuffers()
 {
+    //glFlush();
     m_window.display();
 }

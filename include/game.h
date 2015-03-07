@@ -9,34 +9,51 @@
 #include "system/graphics/scenemanager.h"
 #include "system/window/sharedwindow.h"
 #include "utility/common.h"
+#include <memory>
 
 // *****************************************************************************
 
 namespace Zero
 {
-    class Game
+    class Game : public Singleton<Game>
     {
     public:
+
+        DECLARE_SINGLETON(Game)
+
+        virtual ~Game() {}
+
         void init();
         void update();
-        void render();
         void run();
         void cleanup();
 
-        Graphics::SceneManager*               sceneMgr()  { return &m_sceneMgr; }
-        std::shared_ptr<Graphics::Scene>      scene()     { return sceneMgr()->currentScene(); }
-        std::shared_ptr<System::SharedWindow> window()    { return m_windowPtr; }
-        Ruby::VM*                        TEMPscriptMgr()  { return &m_TEMPrubyVM; }
+        std::shared_ptr<Graphics::SceneManager> sceneMgr()  { return m_sceneMgr; }
+        std::shared_ptr<Graphics::Scene>        scene()     { return sceneMgr()->currentScene(); }
+        std::shared_ptr<System::SharedWindow>   window()    { return m_windowPtr; }
+        std::shared_ptr<Ruby::VM>          TEMPscriptMgr()  { return m_TEMPrubyVM; }
 
-        void setWindow(std::shared_ptr<System::SharedWindow> window) { m_windowPtr = window; }
+        void setSceneMgr(Graphics::SceneManager* smgr) { m_sceneMgr.reset(smgr); }
+        void setWindow(System::SharedWindow* window) { m_windowPtr.reset(window); }
+        void setScriptMgr(Ruby::VM* vm) { m_TEMPrubyVM.reset(vm); }
 
     private:
-        Graphics::SceneManager          m_sceneMgr;
+
+        Game() : m_deltaTime(0.01f), m_accumTime(0.0f) {}
+
+        std::shared_ptr<Graphics::SceneManager> m_sceneMgr;
         std::shared_ptr<System::SharedWindow>   m_windowPtr;
-        Ruby::VM                m_TEMPrubyVM;
+        std::shared_ptr<Ruby::VM> m_TEMPrubyVM;
+
+        Utility::Timer m_timer;
+        float m_updateTime;
+        float m_accumTime;
+        float m_deltaTime;
     };
 
-    using ZeroGame = Singleton<Game>;
+    inline Game* getGame() {
+        return Game::getInstancePtr();
+    }
 }
 
 // *****************************************************************************

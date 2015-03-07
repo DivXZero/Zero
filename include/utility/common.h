@@ -7,6 +7,7 @@
 // *****************************************************************************
 
 #include "singleton.h"
+#include "timer.h"
 #include "json/json.h"
 #include "ruby/ruby.h"
 
